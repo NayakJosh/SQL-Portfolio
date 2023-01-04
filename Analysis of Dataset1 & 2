@@ -1,0 +1,47 @@
+select * from literacy.dataset1;
+select * from literacy.dataset2;
+
+/* count number of rows in both dataset */
+select count(*) from literacy.dataset1;
+select count(*) from literacy.dataset2;
+
+/* dataset from Jharkhand and Bihar */
+select * from literacy.dataset2 where state in ('Jharkhand', 'Bihar') 
+order by state;
+
+/* population of india in all */
+select sum(population) from literacy.dataset2;
+
+/* average growth */
+select state,avg(growth)*100 avg_growth from literacy.dataset1 group by state;
+
+/* average sex ratio */
+select state, avg(Sex_ratio) as avg_sex_ratio from literacy.dataset1
+group by state order by avg_sex_ratio desc;
+
+/* average literacy rate of states greater than 90 */
+select state, avg(Literacy) as avg_literacy_rate from literacy.dataset1
+group by state having round(avg_literacy_rate) > 90
+order by avg_literacy_rate desc;
+
+/* top 3 states showing highest growth ratio */
+select state, Growth from literacy.dataset1
+group by state order by Growth desc
+limit 3;
+
+/* bottom 3 state showing lowest sex ratio */
+select state, avg(Sex_ratio) as avg_sex_ratio from literacy.dataset1
+group by state order by avg_sex_ratio 
+limit 3;
+
+/* top and bottom 3 states in literacy state */
+select state, avg(Literacy) as avg_literacy_rate from literacy.dataset1
+group by state 
+order by avg_literacy_rate desc limit 3
+union (select state, avg(Literacy) as avg_literacy_rate from literacy.dataset1
+group by state 
+order by avg_literacy_rate limit 3);
+
+/* states starting with letter a */
+select distinct state from literacy.dataset1 where lower(State)
+like 'a%';
