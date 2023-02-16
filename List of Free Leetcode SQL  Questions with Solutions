@@ -1,0 +1,52 @@
+/** https://leetcode.com/problems/big-countries
+
+select name, population, area from World 
+where area >= 3000000 or 
+population >= 25000000
+
+/** https://leetcode.com/problems/swap-salary/
+
+update Salary set sex = if(sex = 'm','f','m');
+
+/** https://leetcode.com/problems/not-boring-movies/
+
+select * from cinema where id%2 != 0 and description not in ('boring')
+order by rating desc
+
+/** https://leetcode.com/problems/duplicate-emails/
+
+select email from person
+group by email
+having count(email) > 1;
+
+/** https://leetcode.com/problems/combine-two-tables/
+
+select firstName, lastName, city, state from Person
+left join Address using (personId)
+
+/** https://leetcode.com/problems/employees-earning-more-than-their-managers/
+
+select e2.name as Employee from Employee e1 
+join Employee e2
+on e1.id = e2.managerId
+where e1.salary < e2.salary;
+
+/** https://leetcode.com/problems/customers-who-never-order/
+
+select name as Customers from Customers 
+where id not in (select customerId from Orders)
+
+/** https://leetcode.com/problems/delete-duplicate-emails
+
+delete p1 from Person p1, Person p2
+where p1.email = p2.email and p1.id > p2.id
+
+/** https://leetcode.com/problems/rising-temperature
+
+select x.id from Weather x, Weather y
+where x.Temperature > y.Temperature
+and
+datediff(x.recordDate,y.recordDate)=1; 
+
+https://leetcode.com/problems/classes-more-than-5-students
+https://leetcode.com/problems/second-highest-salary/
